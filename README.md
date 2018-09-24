@@ -1,2 +1,2 @@
 # hw02-malvikamitra1
-hw02-malvikamitra1 created by GitHub Classroom
+This repository consists of files that explore the dataset **Gapminder** using **Rmarkdown and its functions** by committing locally.
