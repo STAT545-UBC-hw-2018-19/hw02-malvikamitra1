@@ -1,0 +1,282 @@
+---
+title: "GAPMINDER"
+   output: 
+       html_document
+         keep_md: true
+          theme: united
+             highlight: espresso
+
+---
+```{r}
+library(gapminder)
+gapminder
+```
+
+##Information dense summary of tbl data. 
+
+```{r}
+##Information dense summary of tbl data. 
+
+dplyr::glimpse(gapminder)
+```
+
+
+```{r}
+summary(gapminder)
+
+##Is it a data.frame, a matrix, a vector, a list?
+
+str(gapminder)
+```
+
+```{r}
+##What is its class?
+class(gapminder)
+```
+
+```{r}
+##How many variables/columns?
+ncol(gapminder)
+```
+
+```{r}
+##How many rows/observations?
+nrow(gapminder)
+```
+
+
+```{r}
+##Can you get these facts about “extent” or “size” in more than one way? 
+dim(gapminder)
+length(pop)
+length(lifeExp)
+```
+
+```{r}
+##What data type is each variable?
+names(gapminder)
+
+typeof(country)
+class(country)
+
+typeof(pop)
+class(pop)
+
+typeof(lifeExp)
+class(lifeExp)
+
+typeof(continent)
+class(continent)
+
+typeof(year)
+class(year)
+
+typeof(gdpPercap)
+class(gdpPercap)
+
+```
+
+```{r}
+range(pop)
+```
+```{r}
+sample(pop, size = 4)
+```
+```{r}
+mean(pop)
+```
+
+```{r}
+quantile(pop, c(0.2, 0.5, 0.8))
+```
+```{r}
+summary(pop)
+```
+
+```{r}
+table(year,continent)
+```
+
+```{r}
+boxplot(lifeExp)
+
+##This graph shows the typical layout of a box-whisker plot.The stripe shows the median, the box represents the upper and lower hinges, and the whiskers show the maximum and minimum values.
+
+```
+
+```{r}
+plot(gdpPercap ~ lifeExp, xlab = 'Year', ylab = 'life expetancy',pch = 18, cex = 2, col = 'gray50')
+ 
+abline(lm(gdpPercap ~ year), lty = 'dotted', lwd = 2, col = 'gray50')
+```
+
+```{r}
+library(gapminder)
+library(tidyverse)
+```
+
+
+
+```{r}
+##Putting continent and country first and everything() after that.
+
+select(gapminder,continent,country,everything())
+```
+
+```{r}
+##Select columns country, pop,lifeExp from the gapminder data, in that order.
+
+select(gapminder,country,pop,lifeExp)
+```
+
+
+
+```{r}
+##Select all variables, from continent to pop
+
+select(gapminder,continent:pop)
+
+```
+
+```{r}
+##Select all columns except year
+
+select(gapminder,-year)
+
+```
+
+```{r}
+##Select columns whose name starts with a character string. 
+
+select(gapminder,starts_with("life"))
+```
+```{r}
+##Select columns whose name matches a regular expression. 
+
+select(gapminder,matches(".l."))
+```
+
+```{r}
+##Select columns whose name contains a character string. 
+
+select(gapminder,contains("."))
+```
+
+```{r}
+##Select columns whose name starts with a character string. 
+
+select(gapminder,ends_with("p"))
+```
+
+```{r}
+##Select columns whose names are in a group of names. 
+
+select(gapminder, one_of(c("country", "continent")))
+```
+
+```{r}
+## arrange() function
+
+arrange(gapminder,year)
+
+arrange(gapminder,desc(lifeExp))
+
+arrange(gapminder,pop,lifeExp)
+```
+
+```{r}
+## Piping, `%>%`
+
+gapminder %>% 
+  select(year,lifeExp,country) %>% 
+  arrange(year,lifeExp)
+
+```
+```{r}
+## filter()
+
+filter(gapminder, pop > 7)
+##Extract rows that meet logical criteria. 
+```
+
+```{r}
+mean(lifeExp) 
+gapminder %>% 
+filter(lifeExp>mean(lifeExp) )  
+  
+```
+
+```{r}
+
+gapminder %>% 
+  select(country,continent) %>% 
+  filter(year>=1960 & year<1970 )
+
+
+```
+
+```{r}
+gapminder %>% 
+  filter((country=="Afganistan"| country=="Canada") & gdpPercap>=10000 & year<22000 )
+
+```
+
+
+```{r}
+gapminder %>% 
+  filter(country %in% c("India","Angola"), year>=1950, year<1980)
+
+```
+
+## Scatterplot
+
+ A _scatterplot_ of `gdpPercap` vs. `year`. 
+
+
+| Grammar Component     | Specification |
+|-----------------------|---------------|
+| __data__              | `gapminder` |
+| __aesthetic mapping__ |  `x` and `y`|
+| __geometric object__  |  point|
+| scale                 |  linear|
+| statistical transform |  none|
+| coordinate system     |  rectangular|
+| facetting             |  none|
+
+
+```{r}
+ggplot(gapminder,aes(x=year,y=gdpPercap))+
+  geom_point(color="orange")
+```
+
+```{r}
+a<- ggplot(gapminder,aes(lifeExp))+
+  scale_y_log10()
+a+geom_histogram(bins=50,color="red")
+```
+
+
+
+```{r}
+b<- ggplot(gapminder,aes(continent,lifeExp))+
+  scale_y_log10()
+b
+```
+
+```{r}
+b+geom_violin()
+```
+
+```{r}
+b+geom_violin()+
+  geom_jitter(alpha=0.5)
+```
+
+```{r}
+gapminder %>% 
+  filter(country=="India") %>% 
+  ggplot(aes(year,gdpPercap)) +
+  geom_line()+
+  geom_point(color="blue")
+```
+
