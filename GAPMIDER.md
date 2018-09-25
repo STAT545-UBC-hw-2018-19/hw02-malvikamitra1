@@ -3,6 +3,7 @@ output:
   html_document:
     keep_md: yes
   pdf_document: default
+  word_document: default
 ---
 
 
@@ -279,7 +280,7 @@ sample(lifeExp, size = 4)
 ```
 
 ```
-## [1] 68.757 49.991 70.850 52.537
+## [1] 40.652 48.576 40.006 39.327
 ```
 
 ```r
@@ -366,7 +367,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Attaching packages ───────────────────────────────────────────────── tidyverse 1.2.1 ──
+## ── Attaching packages ─────── tidyverse 1.2.1 ──
 ```
 
 ```
@@ -381,7 +382,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Conflicts ──────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ```
@@ -756,6 +757,30 @@ gapminder %>%
 
 ```r
 gapminder %>% 
+  select(year,everything()) %>% 
+  filter(gdpPercap>1000)
+```
+
+```
+## # A tibble: 1,353 x 6
+##     year country continent lifeExp     pop gdpPercap
+##    <int> <fct>   <fct>       <dbl>   <int>     <dbl>
+##  1  1952 Albania Europe       55.2 1282697     1601.
+##  2  1957 Albania Europe       59.3 1476505     1942.
+##  3  1962 Albania Europe       64.8 1728137     2313.
+##  4  1967 Albania Europe       66.2 1984060     2760.
+##  5  1972 Albania Europe       67.7 2263554     3313.
+##  6  1977 Albania Europe       68.9 2509048     3533.
+##  7  1982 Albania Europe       70.4 2780097     3631.
+##  8  1987 Albania Europe       72   3075321     3739.
+##  9  1992 Albania Europe       71.6 3326498     2497.
+## 10  1997 Albania Europe       73.0 3428038     3193.
+## # ... with 1,343 more rows
+```
+
+
+```r
+gapminder %>% 
   filter((country=="Afganistan"| country=="Canada") & gdpPercap>=10000 & year<22000 )
 ```
 
@@ -802,11 +827,9 @@ gapminder %>%
 ## 12 India   Asia       1977    54.2 634000000      813.
 ```
 
-## Scatterplot
+## Plots
 
- A _scatterplot_ of `gdpPercap` vs. `year`. 
-
-
+  
 | Grammar Component     | Specification |
 |-----------------------|---------------|
 | __data__              | `gapminder` |
@@ -820,14 +843,18 @@ gapminder %>%
 
 
 ```r
+## A _scatterplot_ of `gdpPercap` vs. `year`.
+
 ggplot(gapminder,aes(x=year,y=gdpPercap))+
   geom_point(color="orange")
 ```
 
-![](GAPMIDER_files/figure-html/unnamed-chunk-35-1.png)<!-- -->
+![](GAPMIDER_files/figure-html/unnamed-chunk-36-1.png)<!-- -->
 
 
 ```r
+##A _histogram_ of `lifeExp`.
+
 a<- ggplot(gapminder,aes(lifeExp))+
   scale_y_log10()
 a+geom_histogram(bins=50,color="red")
@@ -841,7 +868,7 @@ a+geom_histogram(bins=50,color="red")
 ## Warning: Removed 3 rows containing missing values (geom_bar).
 ```
 
-![](GAPMIDER_files/figure-html/unnamed-chunk-36-1.png)<!-- -->
+![](GAPMIDER_files/figure-html/unnamed-chunk-37-1.png)<!-- -->
 
 
 
@@ -852,25 +879,32 @@ b<- ggplot(gapminder,aes(continent,lifeExp))+
 b
 ```
 
-![](GAPMIDER_files/figure-html/unnamed-chunk-37-1.png)<!-- -->
-
-
-```r
-b+geom_violin()
-```
-
 ![](GAPMIDER_files/figure-html/unnamed-chunk-38-1.png)<!-- -->
 
 
 ```r
-b+geom_violin()+
-  geom_jitter(alpha=0.5)
+##A _violinplot_ of `continent` vs. `lifeExp`.
+
+b+geom_violin()
 ```
 
 ![](GAPMIDER_files/figure-html/unnamed-chunk-39-1.png)<!-- -->
 
 
 ```r
+##A _jitterplot_ on _violinplot_ of `continent` vs. `lifeExp`.
+
+
+b+geom_violin()+
+  geom_jitter(alpha=0.5)
+```
+
+![](GAPMIDER_files/figure-html/unnamed-chunk-40-1.png)<!-- -->
+
+
+```r
+##A _lineplot_ of `year` vs. `gdpPercap`.
+
 gapminder %>% 
   filter(country=="India") %>% 
   ggplot(aes(year,gdpPercap)) +
@@ -878,5 +912,13 @@ gapminder %>%
   geom_point(color="blue")
 ```
 
-![](GAPMIDER_files/figure-html/unnamed-chunk-40-1.png)<!-- -->
+![](GAPMIDER_files/figure-html/unnamed-chunk-41-1.png)<!-- -->
+
+```r
+##A _boxplot_ of `continent` vs. `lifeExp`.
+
+b+geom_boxplot(color="pink")
+```
+
+![](GAPMIDER_files/figure-html/unnamed-chunk-42-1.png)<!-- -->
 
