@@ -223,6 +223,12 @@ gapminder %>%
 
 ```{r}
 gapminder %>% 
+  select(year,everything()) %>% 
+  filter(gdpPercap>1000)
+```
+
+```{r}
+gapminder %>% 
   filter((country=="Afganistan"| country=="Canada") & gdpPercap>=10000 & year<22000 )
 
 ```
@@ -284,5 +290,8 @@ gapminder %>%
   ggplot(aes(year,gdpPercap)) +
   geom_line()+
   geom_point(color="blue")
+```
+```{r}
+b+geom_boxplot(color="pink")
 ```
 
