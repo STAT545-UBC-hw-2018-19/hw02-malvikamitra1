@@ -422,56 +422,58 @@
 ## [1] "numeric"
 \end{verbatim}
 
+\#Exploration of the variable lifeExp
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{range}\NormalTok{(pop)}
+\KeywordTok{range}\NormalTok{(lifeExp)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1]      60011 1318683096
+## [1] 23.599 82.603
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sample}\NormalTok{(pop, }\DataTypeTok{size =} \DecValTok{4}\NormalTok{)}
+\KeywordTok{sample}\NormalTok{(lifeExp, }\DataTypeTok{size =} \DecValTok{4}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 56179000   975199  2915959  2009245
+## [1] 74.340 37.444 50.469 39.989
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{mean}\NormalTok{(pop)}
+\KeywordTok{mean}\NormalTok{(lifeExp)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 29601212
+## [1] 59.47444
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{quantile}\NormalTok{(pop, }\KeywordTok{c}\NormalTok{(}\FloatTok{0.2}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.8}\NormalTok{))}
+\KeywordTok{quantile}\NormalTok{((lifeExp), }\KeywordTok{c}\NormalTok{(}\FloatTok{0.2}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.8}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##      20%      50%      80% 
-##  2060997  7023596 25757626
+##     20%     50%     80% 
+## 45.8992 60.7125 72.0288
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(pop)}
+\KeywordTok{summary}\NormalTok{(lifeExp)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-## 6.001e+04 2.794e+06 7.024e+06 2.960e+07 1.959e+07 1.319e+09
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   23.60   48.20   60.71   59.47   70.85   82.60
 \end{verbatim}
 
 \begin{Shaded}
@@ -499,11 +501,20 @@
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{boxplot}\NormalTok{(lifeExp)}
+\KeywordTok{hist}\NormalTok{(lifeExp, }\DataTypeTok{col=}\StringTok{'red'}\NormalTok{, }\DataTypeTok{main=}\OtherTok{NULL}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{'Life Expectance'}\NormalTok{,}
+\DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{GAPMIDER_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(lifeExp)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GAPMIDER_files/figure-latex/unnamed-chunk-16-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -519,7 +530,7 @@
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{GAPMIDER_files/figure-latex/unnamed-chunk-16-1.pdf}
+\includegraphics{GAPMIDER_files/figure-latex/unnamed-chunk-17-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1013,7 +1024,7 @@ facetting & none\tabularnewline
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{GAPMIDER_files/figure-latex/unnamed-chunk-34-1.pdf}
+\includegraphics{GAPMIDER_files/figure-latex/unnamed-chunk-35-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1031,7 +1042,7 @@ facetting & none\tabularnewline
 ## Warning: Removed 3 rows containing missing values (geom_bar).
 \end{verbatim}
 
-\includegraphics{GAPMIDER_files/figure-latex/unnamed-chunk-35-1.pdf}
+\includegraphics{GAPMIDER_files/figure-latex/unnamed-chunk-36-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1041,7 +1052,7 @@ facetting & none\tabularnewline
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{GAPMIDER_files/figure-latex/unnamed-chunk-36-1.pdf}
+\includegraphics{GAPMIDER_files/figure-latex/unnamed-chunk-37-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1049,7 +1060,7 @@ facetting & none\tabularnewline
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{GAPMIDER_files/figure-latex/unnamed-chunk-37-1.pdf}
+\includegraphics{GAPMIDER_files/figure-latex/unnamed-chunk-38-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1058,7 +1069,7 @@ facetting & none\tabularnewline
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{GAPMIDER_files/figure-latex/unnamed-chunk-38-1.pdf}
+\includegraphics{GAPMIDER_files/figure-latex/unnamed-chunk-39-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1070,7 +1081,7 @@ facetting & none\tabularnewline
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{GAPMIDER_files/figure-latex/unnamed-chunk-39-1.pdf}
+\includegraphics{GAPMIDER_files/figure-latex/unnamed-chunk-40-1.pdf}
 
 
 \end{document}

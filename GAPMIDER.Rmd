@@ -1,5 +1,6 @@
 ---
 output:
+  word_document: default
   pdf_document: default
   html_document:
     keep_md: yes
@@ -74,25 +75,32 @@ class(gdpPercap)
 
 ```
 
+#Exploration of the variable lifeExp
+
 ```{r}
-range(pop)
+range(lifeExp)
 ```
 ```{r}
-sample(pop, size = 4)
+sample(lifeExp, size = 4)
 ```
 ```{r}
-mean(pop)
+mean(lifeExp)
 ```
 
 ```{r}
-quantile(pop, c(0.2, 0.5, 0.8))
+quantile((lifeExp), c(0.2, 0.5, 0.8))
 ```
 ```{r}
-summary(pop)
+summary(lifeExp)
 ```
 
 ```{r}
 table(year,continent)
+```
+
+```{r}
+hist(lifeExp, col='red', main=NULL, xlab = 'Life Expectance',
+freq = FALSE)
 ```
 
 ```{r}

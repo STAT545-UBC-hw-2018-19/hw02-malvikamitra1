@@ -1,7 +1,8 @@
 ---
-output: 
-  html_document: 
+output:
+  html_document:
     keep_md: yes
+  pdf_document: default
 ---
 
 
@@ -262,48 +263,50 @@ class(gdpPercap)
 ## [1] "numeric"
 ```
 
-
-```r
-range(pop)
-```
-
-```
-## [1]      60011 1318683096
-```
-
-```r
-sample(pop, size = 4)
-```
-
-```
-## [1] 13954700 43997828 25009741  6316424
-```
-
-```r
-mean(pop)
-```
-
-```
-## [1] 29601212
-```
+#Exploration of the variable lifeExp
 
 
 ```r
-quantile(pop, c(0.2, 0.5, 0.8))
+range(lifeExp)
 ```
 
 ```
-##      20%      50%      80% 
-##  2060997  7023596 25757626
+## [1] 23.599 82.603
 ```
 
 ```r
-summary(pop)
+sample(lifeExp, size = 4)
 ```
 
 ```
-##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-## 6.001e+04 2.794e+06 7.024e+06 2.960e+07 1.959e+07 1.319e+09
+## [1] 68.757 49.991 70.850 52.537
+```
+
+```r
+mean(lifeExp)
+```
+
+```
+## [1] 59.47444
+```
+
+
+```r
+quantile((lifeExp), c(0.2, 0.5, 0.8))
+```
+
+```
+##     20%     50%     80% 
+## 45.8992 60.7125 72.0288
+```
+
+```r
+summary(lifeExp)
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   23.60   48.20   60.71   59.47   70.85   82.60
 ```
 
 
@@ -330,10 +333,18 @@ table(year,continent)
 
 
 ```r
-boxplot(lifeExp)
+hist(lifeExp, col='red', main=NULL, xlab = 'Life Expectance',
+freq = FALSE)
 ```
 
 ![](GAPMIDER_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+
+
+```r
+boxplot(lifeExp)
+```
+
+![](GAPMIDER_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
 
 ```r
 ##This graph shows the typical layout of a box-whisker plot.The stripe shows the median, the box represents the upper and lower hinges, and the whiskers show the maximum and minimum values.
@@ -346,7 +357,7 @@ plot(gdpPercap ~ lifeExp, xlab = 'Year', ylab = 'life expetancy',pch = 18, cex =
 abline(lm(gdpPercap ~ year), lty = 'dotted', lwd = 2, col = 'gray50')
 ```
 
-![](GAPMIDER_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
+![](GAPMIDER_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
 
 
 ```r
@@ -813,7 +824,7 @@ ggplot(gapminder,aes(x=year,y=gdpPercap))+
   geom_point(color="orange")
 ```
 
-![](GAPMIDER_files/figure-html/unnamed-chunk-34-1.png)<!-- -->
+![](GAPMIDER_files/figure-html/unnamed-chunk-35-1.png)<!-- -->
 
 
 ```r
@@ -830,7 +841,7 @@ a+geom_histogram(bins=50,color="red")
 ## Warning: Removed 3 rows containing missing values (geom_bar).
 ```
 
-![](GAPMIDER_files/figure-html/unnamed-chunk-35-1.png)<!-- -->
+![](GAPMIDER_files/figure-html/unnamed-chunk-36-1.png)<!-- -->
 
 
 
@@ -841,14 +852,14 @@ b<- ggplot(gapminder,aes(continent,lifeExp))+
 b
 ```
 
-![](GAPMIDER_files/figure-html/unnamed-chunk-36-1.png)<!-- -->
+![](GAPMIDER_files/figure-html/unnamed-chunk-37-1.png)<!-- -->
 
 
 ```r
 b+geom_violin()
 ```
 
-![](GAPMIDER_files/figure-html/unnamed-chunk-37-1.png)<!-- -->
+![](GAPMIDER_files/figure-html/unnamed-chunk-38-1.png)<!-- -->
 
 
 ```r
@@ -856,7 +867,7 @@ b+geom_violin()+
   geom_jitter(alpha=0.5)
 ```
 
-![](GAPMIDER_files/figure-html/unnamed-chunk-38-1.png)<!-- -->
+![](GAPMIDER_files/figure-html/unnamed-chunk-39-1.png)<!-- -->
 
 
 ```r
@@ -867,5 +878,5 @@ gapminder %>%
   geom_point(color="blue")
 ```
 
-![](GAPMIDER_files/figure-html/unnamed-chunk-39-1.png)<!-- -->
+![](GAPMIDER_files/figure-html/unnamed-chunk-40-1.png)<!-- -->
 
