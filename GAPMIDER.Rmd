@@ -1,15 +1,14 @@
 ---
-title: "GAPMINDER"
-   output: 
-       html_document
-         keep_md: true
-          theme: united
-             highlight: espresso
-
+output:
+  pdf_document: default
+  html_document:
+    keep_md: yes
 ---
+
 ```{r}
 library(gapminder)
 gapminder
+attach(gapminder)
 ```
 
 ##Information dense summary of tbl data. 
@@ -55,7 +54,6 @@ length(lifeExp)
 ```{r}
 ##What data type is each variable?
 names(gapminder)
-
 typeof(country)
 class(country)
 
