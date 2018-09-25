@@ -1,2 +1,3 @@
 # hw02-malvikamitra1
-This repository consists of files that explore the dataset **Gapminder** using **Rmarkdown and its functions** by committing locally.
+This my repository for homework two that consists of files exploring the dataset **Gapminder** a bit deeper using **Rmarkdown and its functions like dplyr and ggplot** by committing locally.
+
