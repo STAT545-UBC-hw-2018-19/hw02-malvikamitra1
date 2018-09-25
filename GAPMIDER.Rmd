@@ -240,11 +240,9 @@ gapminder %>%
 
 ```
 
-## Scatterplot
+## Plots
 
- A _scatterplot_ of `gdpPercap` vs. `year`. 
-
-
+  
 | Grammar Component     | Specification |
 |-----------------------|---------------|
 | __data__              | `gapminder` |
@@ -257,11 +255,15 @@ gapminder %>%
 
 
 ```{r}
+## A _scatterplot_ of `gdpPercap` vs. `year`.
+
 ggplot(gapminder,aes(x=year,y=gdpPercap))+
   geom_point(color="orange")
 ```
 
 ```{r}
+##A _histogram_ of `lifeExp`.
+
 a<- ggplot(gapminder,aes(lifeExp))+
   scale_y_log10()
 a+geom_histogram(bins=50,color="red")
@@ -276,15 +278,22 @@ b
 ```
 
 ```{r}
+##A _violinplot_ of `continent` vs. `lifeExp`.
+
 b+geom_violin()
 ```
 
 ```{r}
+##A _jitterplot_ on _violinplot_ of `continent` vs. `lifeExp`.
+
+
 b+geom_violin()+
   geom_jitter(alpha=0.5)
 ```
 
 ```{r}
+##A _lineplot_ of `year` vs. `gdpPercap`.
+
 gapminder %>% 
   filter(country=="India") %>% 
   ggplot(aes(year,gdpPercap)) +
@@ -292,6 +301,8 @@ gapminder %>%
   geom_point(color="blue")
 ```
 ```{r}
+##A _boxplot_ of `continent` vs. `lifeExp`.
+
 b+geom_boxplot(color="pink")
 ```
 
